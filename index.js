@@ -1,12 +1,12 @@
-const { env, port } = require("./config");
-const http = require("http");
-const server = http.createServer();
+const express = require("express");
+const { port } = require("./config");
 
-server.on("request", (request, response) => {
-  response.statusCode = "200";
-  response.end("Hola mundo");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.json({ hola: "mundo" });
 });
 
-server.listen(port);
-console.log(env);
-console.log(`Servidor corriendo en el puerto ${port}`);
+app.listen(port, () => {
+  console.log(`Escuchando puerto : ${port}`);
+});
